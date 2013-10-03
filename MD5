@@ -1,6 +1,11 @@
-0213c1172aec9fb1728e4bee1bd20998 *DESCRIPTION
+f712be04817ef6eb5d10bf25d9f0e2ed *DESCRIPTION
 87a4ca1b7a1150b8b109c9566de1243d *NAMESPACE
-5dacf5642c7f42df0967e2f6dd5690ce *R/naturalsort.R
-bc084f78fbdc332de9ee07c314c58e04 *man/naturalsort-package.Rd
-dd7a28384af5ee0bcd8b5debc1508338 *man/naturalsort.Rd
-3291402f0ad420caf864a607e970ebd5 *test/testsuite.R
+7dd48cabdbb854b0aa8fbd5089d10ebf *NEWS
+28e7d4693719f1b85bfd719ea5cf891e *R/naturalsort.R
+2f5eb33d82fd46f4b140db636231bec9 *man/naturalsort-package.Rd
+93ebcd53c69595193cea90553010ab9a *man/naturalsort.Rd
+26616df99b57c5b1123421a25ced930d *tests/test-all.R
+cb967ee3cfd1bd872c42229785388003 *tests/testthat/issue-1.R
+b6ba2a82d602899c6159957283af5c1b *tests/testthat/issue-2.R
+f2eef4817f368e6ceefa974bc91a4176 *tests/testthat/issue-3.R
+b39042534548c5ec624ad0f810ed0c87 *tests/testthat/testsuite.R

@@ -11,6 +11,10 @@ naturalorder <- function(text, decreasing=FALSE, na.last=TRUE) {  # different wi
    if (!is.character(text)) {
       text <- as.character(text)
    }
+   if (length(text) == 0L) {
+      return(integer(0L))
+   }
+   
    sign <- (-1L) ^ decreasing
    removingNA <- is.na(na.last)  # used at last to remove NAs
    ## na.last | (is.na(na.last) || na.last)
@@ -20,14 +24,17 @@ naturalorder <- function(text, decreasing=FALSE, na.last=TRUE) {  # different wi
    ## FALSE   | FALSE
    na.last <- xor(is.na(na.last) || na.last, decreasing)
    
+   ## If strsplit is applied to an empty character, an empty character vector is returned.
+   ## Therefore, if all elements in 'text' are empty, 'maxLength' will be 0.
+   ## Otherwise, when there is at least one ordinal value or NA in 'text', 'maxLength' will be greater than 0.
    tokenList <- strsplit(text, "(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)", perl=TRUE)
    maxLength <- max(sapply(tokenList, length))
-   tokenList <- sapply(tokenList, function(tokens) c(tokens, rep("", maxLength - length(tokens))))
-   if (NCOL(tokenList) == 1) {  # all elements contains only characters or only digits (or length(text) == 1)
-      tokenList <- data.frame(tokenList, stringsAsFactors=FALSE)
-   } else {
-      tokenList <- as.data.frame(t(tokenList), stringsAsFactors=FALSE)
+   if (maxLength == 0L) {  # all elements are empty ("").
+      return(seq_along(text))
    }
+   tokenList <- lapply(tokenList, function(tokens) c(tokens, rep("", maxLength - length(tokens))))
+   tokenList <- Reduce(rbind, tokenList, matrix(, 0, maxLength))
+   tokenList <- as.data.frame(tokenList, stringsAsFactors=FALSE)
    
    ranks <- lapply(tokenList, function(tokens) {
       isInteger <- grepl("^\\d+$", tokens, useBytes=TRUE)

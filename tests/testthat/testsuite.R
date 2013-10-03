@@ -1,12 +1,3 @@
-stopifnot(require(testthat))
-
-## load functions
-source(file.path((function(name) {
-   path <- (function() attr(body(sys.function(-1)), "srcfile"))()$filename
-   path <- file.path(dirname(path), "..", "R", name)
-   normalizePath(path, .Platform$file.sep)
-})("naturalsort.R")), encoding="UTF-8")
-
 test_that("checks naturalorder(decreasing=FALSE, na.last=TRUE)", {
    text <- c("a1.png", "a2.png", "a10.png", NA, "a1-1.png")
    expected <- c(5L, 1L, 2L, 3L, 4L)
